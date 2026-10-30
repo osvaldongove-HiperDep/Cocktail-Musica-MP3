@@ -3,89 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail Musica MP3</title>
-    <meta name="description" content="Baixe e ouça músicas gratuitamente. Plataforma musical para Moçambique e países de língua portuguesa.">
+    <title>Cocktail Musica | Promoção de Artistas Iniciantes</title>
+    <meta name="description" content="Plataforma de promoção de artistas iniciantes. Ouça e baixe músicas autorizadas em MP3 e MP4.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
     <!-- Cabeçalho -->
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Cocktail Musica</h1>
-                <span>MP3</span>
+                <h1>Cocktail <span>Musica</span></h1>
             </div>
             <nav>
                 <a href="#inicio">Início</a>
-                <a href="#pesquisa">Pesquisar</a>
                 <a href="#catalogo">Catálogo</a>
-                <a href="#promocao">Promover</a>
+                <a href="#enviar">Enviar Música</a>
+                <a href="https://wa.me/258841460389" target="_blank" class="btn-whatsapp-nav">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero / Secção Principal -->
+    <!-- Hero -->
     <section id="inicio" class="hero">
         <div class="container">
-            <h2>Música grátis para Moçambique e a CPLP</h2>
-            <p>Pesquisa, ouve e partilha. Conteúdo autorizado e resultados do YouTube.</p>
+            <h2>Promoção de Artistas Iniciantes</h2>
+            <p>Ouça, baixe e descubra novos talentos de Moçambique e da CPLP</p>
             
-            <!-- Barra de Pesquisa -->
-            <div class="search-box" id="pesquisa">
-                <input type="text" id="searchInput" placeholder="Escreve o nome da música ou artista...">
-                <button onclick="pesquisar()">Pesquisar</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar música ou artista..." onkeyup="filtrarMusicas()">
+                <button onclick="filtrarMusicas()">
+                    <i class="fas fa-search"></i> Pesquisar
+                </button>
             </div>
-            <p class="aviso">Os resultados abrem no YouTube (conteúdo oficial).</p>
+            <p class="aviso" id="resultadoPesquisa"></p>
         </div>
     </section>
 
-    <!-- Catálogo Autorizado -->
+    <!-- Catálogo -->
     <section id="catalogo" class="catalogo">
         <div class="container">
-            <h2>Catálogo Autorizado</h2>
-            <p>Músicas com autorização ou domínio público / Creative Commons.</p>
-            
-            <div class="grid">
-                <!-- Exemplo de item - substituir por conteúdos reais autorizados -->
-                <div class="card">
-                    <div class="card-img">🎵</div>
-                    <h3>Exemplo – Música Autorizada</h3>
-                    <p>Artista Local • 2025</p>
-                    <a href="#" class="btn">Ouvir / Baixar</a>
-                </div>
-                <div class="card">
-                    <div class="card-img">🎵</div>
-                    <h3>Exemplo 2 – Domínio Público</h3>
-                    <p>Clássico • Livre</p>
-                    <a href="#" class="btn">Ouvir / Baixar</a>
-                </div>
-                <div class="card">
-                    <div class="card-img">🎵</div>
-                    <h3>Exemplo 3 – Creative Commons</h3>
-                    <p>Artista Independente</p>
-                    <a href="#" class="btn">Ouvir / Baixar</a>
-                </div>
+            <div class="section-header">
+                <h2>Catálogo de Artistas</h2>
+                <p>Músicas autorizadas pelos próprios artistas. Ouça e baixe gratuitamente.</p>
             </div>
-            <p class="nota">Em breve: mais conteúdos autorizados de artistas moçambicanos e da CPLP.</p>
+            
+            <div class="grid" id="listaMusicas">
+
+                <!-- Exemplo de música (substitui pelos reais) -->
+                <div class="card" data-titulo="exemplo musica" data-artista="artista iniciante">
+                    <div class="card-img">🎵</div>
+                    <h3>Exemplo – Música do Artista</h3>
+                    <p class="artista">Artista Iniciante • 2026</p>
+                    
+                    <audio controls preload="none">
+                        <source src="musicas/exemplo1.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="botoes">
+                        <a href="musicas/exemplo1.mp3" download class="btn btn-download">
+                            <i class="fas fa-download"></i> MP3
+                        </a>
+                        <a href="musicas/exemplo1.mp4" download class="btn btn-download btn-mp4">
+                            <i class="fas fa-video"></i> MP4
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mais um exemplo -->
+                <div class="card" data-titulo="outra musica" data-artista="novo talento">
+                    <div class="card-img">🎵</div>
+                    <h3>Outra Música</h3>
+                    <p class="artista">Novo Talento • 2026</p>
+                    
+                    <audio controls preload="none">
+                        <source src="musicas/exemplo2.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="botoes">
+                        <a href="musicas/exemplo2.mp3" download class="btn btn-download">
+                            <i class="fas fa-download"></i> MP3
+                        </a>
+                        <a href="musicas/exemplo2.mp4" download class="btn btn-download btn-mp4">
+                            <i class="fas fa-video"></i> MP4
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="nota" id="semResultados" style="display: none; color: #e74c3c; font-weight: 600;">
+                Nenhuma música encontrada.
+            </p>
         </div>
     </section>
 
-    <!-- Secção de Promoção (futura receita) -->
-    <section id="promocao" class="promocao">
+    <!-- Enviar Música -->
+    <section id="enviar" class="enviar">
         <div class="container">
-            <h2>Promove a tua música</h2>
-            <p>Artistas e selos: coloca a tua música em destaque nesta plataforma.</p>
-            <a href="mailto:osvaldongove@gmail.com" class="btn-destaque">Falar connosco</a>
+            <h2>És artista iniciante?</h2>
+            <p>Envia a tua música e aparece no Cocktail Musica com player e download.</p>
+            
+            <div class="vantagens">
+                <div class="vantagem">
+                    <i class="fas fa-music"></i>
+                    <h4>Player no site</h4>
+                    <p>As pessoas ouvem a tua música directamente</p>
+                </div>
+                <div class="vantagem">
+                    <i class="fas fa-download"></i>
+                    <h4>Download MP3 & MP4</h4>
+                    <p>Facilitamos o download da tua música</p>
+                </div>
+                <div class="vantagem">
+                    <i class="fas fa-bullhorn"></i>
+                    <h4>Promoção</h4>
+                    <p>Ajudamos a divulgar o teu trabalho</p>
+                </div>
+            </div>
+
+            <div class="promo-buttons">
+                <a href="https://wa.me/258841460389?text=Olá! Quero enviar a minha música para o Cocktail Musica" 
+                   target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+                </a>
+            </div>
+
+            <p class="nota-envio">
+                Ao enviar a tua música, autorizas a publicação e o download no site.
+            </p>
         </div>
     </section>
 
     <!-- Rodapé -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Cocktail Musica MP3. Todos os direitos reservados.</p>
-            <p>Conteúdo autorizado apenas. Respeitamos os direitos de autor.</p>
+            <p>&copy; 2026 Cocktail Musica. Todos os direitos reservados.</p>
+            <p>Apenas músicas com autorização dos artistas. Respeitamos os direitos de autor.</p>
         </div>
     </footer>
+
+    <!-- Botão flutuante WhatsApp -->
+    <a href="https://wa.me/258841460389?text=Olá! Vim pelo site Cocktail Musica" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="script.js"></script>
 </body>
