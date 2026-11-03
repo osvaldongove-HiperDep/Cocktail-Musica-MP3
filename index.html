@@ -1,1 +1,199 @@
-/home/workdir/artifacts/cocktail-musica/
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Musica | Ouvir e Baixar Músicas de Artistas Iniciantes</title>
+    <meta name="description" content="Ouça e baixe músicas de artistas iniciantes moçambicanos. Plataforma Cocktail Musica — promove a tua música por apenas 500 MT.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                <h1>Cocktail <span>Musica</span></h1>
+            </a>
+            <nav class="nav-desktop">
+                <a href="#catalogo">Catálogo</a>
+                <a href="#precos">Preços</a>
+                <a href="#enviar">Enviar Música</a>
+                <a href="https://wa.me/258841460389" target="_blank" class="btn-whatsapp-nav">
+                    <i class="fab fa-whatsapp"></i> 84 146 0389
+                </a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="nav-mobile" id="navMobile">
+            <a href="#catalogo" onclick="fecharMenu()">Catálogo</a>
+            <a href="#precos" onclick="fecharMenu()">Preços</a>
+            <a href="#enviar" onclick="fecharMenu()">Enviar Música</a>
+            <a href="https://wa.me/258841460389" target="_blank" class="btn-whatsapp-nav">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="titulo-principal">Cocktail Musica</h2>
+                <p class="subtitulo">Músicas 100% Top de Artistas Iniciantes</p>
+                <p class="subtitulo-pequeno">Promove a tua música e chega a mais ouvintes</p>
+                
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Pesquisar música ou artista..." autocomplete="off">
+                    <button type="button" onclick="filtrarMusicas()" aria-label="Pesquisar">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <p class="aviso" id="resultadoPesquisa"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="destaques" id="destaques">
+        <div class="container">
+            <div class="secao-header">
+                <h3 class="secao-titulo"><i class="fas fa-star"></i> Em Destaque</h3>
+                <p class="secao-desc">Músicas promovidas pelos artistas</p>
+            </div>
+            <div class="grid destaques-grid" id="listaDestaques">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo -->
+    <section id="catalogo" class="catalogo">
+        <div class="container">
+            <div class="secao-header">
+                <h3 class="secao-titulo">Ouvir e Baixar</h3>
+                <div class="filtros">
+                    <button class="filtro-btn active" data-filtro="todos" onclick="aplicarFiltro('todos')">Todas</button>
+                    <button class="filtro-btn" data-filtro="destaque" onclick="aplicarFiltro('destaque')">Destaques</button>
+                    <button class="filtro-btn" data-filtro="recentes" onclick="aplicarFiltro('recentes')">Recentes</button>
+                </div>
+            </div>
+            
+            <div class="grid" id="listaMusicas">
+                <!-- Preenchido via JS -->
+            </div>
+
+            <p class="nota" id="semResultados" style="display:none;">
+                <i class="fas fa-music"></i> Nenhuma música encontrada.
+            </p>
+        </div>
+    </section>
+
+    <!-- Preços / Monetização -->
+    <section id="precos" class="precos">
+        <div class="container">
+            <div class="secao-header centro">
+                <h3 class="secao-titulo">Promove a tua Música</h3>
+                <p class="secao-desc">Aparece no topo e chega a mais ouvintes. Simples e barato.</p>
+            </div>
+
+            <div class="preco-card">
+                <div class="preco-badge">Mais Popular</div>
+                <div class="preco-valor">
+                    <span class="moeda">MT</span>
+                    <span class="numero">500</span>
+                </div>
+                <p class="preco-periodo">por música / promoção</p>
+                <ul class="preco-lista">
+                    <li><i class="fas fa-check"></i> Aparece em <strong>Destaque</strong> no topo</li>
+                    <li><i class="fas fa-check"></i> Badge “DESTAQUE” no card</li>
+                    <li><i class="fas fa-check"></i> Prioridade nos resultados de busca</li>
+                    <li><i class="fas fa-check"></i> Maior visibilidade para downloads</li>
+                    <li><i class="fas fa-check"></i> Duração: 7 dias</li>
+                </ul>
+                <a href="https://wa.me/258841460389?text=Olá! Quero promover a minha música no Cocktail Musica por 500 MT. Nome da música: " 
+                   target="_blank" class="btn-promover">
+                    <i class="fab fa-whatsapp"></i> Promover agora por 500 MT
+                </a>
+                <p class="preco-nota">Pagamento via M-Pesa ou Emola. Envia comprovativo no WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="como-funciona">
+        <div class="container">
+            <div class="secao-header centro">
+                <h3 class="secao-titulo">Como funciona</h3>
+            </div>
+            <div class="passos">
+                <div class="passo">
+                    <div class="passo-num">1</div>
+                    <h4>Envia a música</h4>
+                    <p>Manda o ficheiro MP3 (e MP4 se tiveres) pelo WhatsApp.</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-num">2</div>
+                    <h4>Publicamos grátis</h4>
+                    <p>A tua música fica disponível para ouvir e baixar no catálogo.</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-num">3</div>
+                    <h4>Promove (opcional)</h4>
+                    <p>Paga 500 MT e a tua música sobe para o topo com badge de destaque.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enviar Música -->
+    <section id="enviar" class="enviar">
+        <div class="container">
+            <div class="enviar-box">
+                <h3>És artista?</h3>
+                <p>Envia a tua música e aparece aqui com player e download. Podes promover depois por apenas 500 MT.</p>
+                <a href="https://wa.me/258841460389?text=Olá! Quero enviar a minha música para o Cocktail Musica" 
+                   target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp (84 146 0389)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <h3>Cocktail <span>Musica</span></h3>
+                    <p>Plataforma de músicas de artistas iniciantes</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#catalogo">Catálogo</a>
+                    <a href="#precos">Preços</a>
+                    <a href="#enviar">Enviar</a>
+                    <a href="https://wa.me/258841460389" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Cocktail Musica. Apenas músicas com autorização dos artistas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante WhatsApp -->
+    <a href="https://wa.me/258841460389" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="songs.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
