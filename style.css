@@ -1,247 +1,963 @@
-/* Reset e base */
-* {
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #0b0f14;
+    --bg-card: #141a22;
+    --bg-card-hover: #1a222d;
+    --primary: #25d366;
+    --primary-dark: #1da851;
+    --accent: #f5c518;
+    --text: #f0f2f5;
+    --text-muted: #9aa3b2;
+    --border: #243041;
+    --radius: 14px;
+    --shadow: 0 8px 30px rgba(0,0,0,0.35);
+    --transition: 0.25s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.6;
-    color: #333;
-    background: #f8f9fa;
+    min-height: 100vh;
 }
 
 .container {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header */
-header {
-    background: #111;
-    color: white;
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-header .container {
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ===== HEADER ===== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(11, 15, 20, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    height: 64px;
 }
 
 .logo h1 {
-    font-size: 1.5rem;
-    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 .logo span {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    color: var(--primary);
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 0.95rem;
-}
-
-nav a:hover {
-    color: #ff6b35;
-}
-
-/* Hero */
-.hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.hero h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 30px;
-}
-
-.search-box {
+.nav-desktop {
     display: flex;
-    max-width: 600px;
-    margin: 0 auto 15px;
-    gap: 10px;
+    align-items: center;
+    gap: 28px;
 }
 
-.search-box input {
-    flex: 1;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+.nav-desktop a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--transition);
 }
 
-.search-box button {
-    padding: 14px 28px;
-    background: #ff6b35;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
+.nav-desktop a:hover {
+    color: var(--text);
+}
+
+.btn-whatsapp-nav {
+    background: var(--primary) !important;
+    color: #fff !important;
+    padding: 8px 16px;
+    border-radius: 50px;
     font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.search-box button:hover {
-    background: #e55a2b;
+.btn-whatsapp-nav:hover {
+    background: var(--primary-dark) !important;
 }
 
-.aviso {
-    font-size: 0.85rem;
-    opacity: 0.7;
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
-/* Catálogo */
-.catalogo {
-    padding: 60px 0;
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 16px 20px 24px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
 }
 
-.catalogo h2 {
+.nav-mobile.open {
+    display: flex;
+}
+
+.nav-mobile a {
+    padding: 10px 0;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* ===== HERO ===== */
+.hero {
+    padding: 70px 0 50px;
+    background: linear-gradient(180deg, #0f1620 0%, var(--bg) 100%);
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 1.8rem;
 }
 
-.catalogo > .container > p {
-    text-align: center;
-    color: #666;
-    margin-bottom: 40px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card-img {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    font-size: 1.1rem;
+.titulo-principal {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
     margin-bottom: 8px;
 }
 
-.card p {
-    color: #777;
+.subtitulo {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.subtitulo-pequeno {
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.search-box {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 52px 14px 44px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transition);
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-box button {
+    position: absolute;
+    right: 6px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition);
+}
+
+.search-box button:hover {
+    background: var(--primary-dark);
+}
+
+.aviso {
+    margin-top: 12px;
     font-size: 0.9rem;
-    margin-bottom: 15px;
+    color: var(--text-muted);
+    min-height: 20px;
+}
+
+/* ===== SECÇÕES COMUNS ===== */
+.secao-header {
+    margin-bottom: 28px;
+}
+
+.secao-header.centro {
+    text-align: center;
+}
+
+.secao-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.secao-header.centro .secao-titulo {
+    justify-content: center;
+}
+
+.secao-titulo i {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.secao-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ===== FILTROS ===== */
+.filtros {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.filtro-btn {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.filtro-btn:hover,
+.filtro-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+/* ===== GRID & CARDS ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow);
+}
+
+.card.destaque {
+    border-color: var(--accent);
+    background: linear-gradient(145deg, #1a1f0a 0%, var(--bg-card) 60%);
+}
+
+.badge-destaque {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--accent);
+    color: #111;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.card-img {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #1e2a38, #0f1620);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+}
+
+.card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.card .artista {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+
+.card audio {
+    width: 100%;
+    height: 36px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .btn {
-    display: inline-block;
-    background: #ff6b35;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9rem;
+    flex: 1;
+    min-width: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #1e2a38;
+    color: var(--text);
+    border: 1px solid var(--border);
+    transition: all var(--transition);
 }
 
 .btn:hover {
-    background: #e55a2b;
+    background: #273447;
+    border-color: #3a4d66;
+}
+
+.btn-mp4 {
+    background: transparent;
+}
+
+.btn-promover-card {
+    width: 100%;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px dashed var(--accent);
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+.btn-promover-card:hover {
+    background: rgba(245, 197, 24, 0.1);
+}
+
+.stats {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===== DESTAQUES ===== */
+.destaques {
+    padding: 40px 0 20px;
+}
+
+.destaques-grid .card {
+    border-color: rgba(245, 197, 24, 0.4);
+}
+
+/* ===== CATÁLOGO ===== */
+.catalogo {
+    padding: 30px 0 60px;
 }
 
 .nota {
     text-align: center;
-    margin-top: 30px;
-    color: #888;
-    font-size: 0.9rem;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 1rem;
 }
 
-/* Promoção */
-.promocao {
-    background: #111;
-    color: white;
+.nota i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+/* ===== PREÇOS ===== */
+.precos {
     padding: 60px 0;
+    background: linear-gradient(180deg, var(--bg) 0%, #0f1620 100%);
+}
+
+.preco-card {
+    max-width: 420px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 28px;
     text-align: center;
+    position: relative;
+    box-shadow: var(--shadow);
 }
 
-.promocao h2 {
-    margin-bottom: 15px;
+.preco-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #111;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.promocao p {
-    margin-bottom: 25px;
-    opacity: 0.9;
+.preco-valor {
+    margin: 20px 0 4px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
 }
 
-.btn-destaque {
-    display: inline-block;
-    background: #ff6b35;
-    color: white;
-    padding: 14px 32px;
-    border-radius: 8px;
-    text-decoration: none;
+.preco-valor .moeda {
+    font-size: 1.3rem;
     font-weight: 600;
+    margin-top: 10px;
+    color: var(--text-muted);
 }
 
-.btn-destaque:hover {
-    background: #e55a2b;
+.preco-valor .numero {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--primary);
 }
 
-/* Footer */
-footer {
-    background: #0a0a0a;
-    color: #aaa;
-    padding: 30px 0;
-    text-align: center;
+.preco-periodo {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.preco-lista {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+.preco-lista li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preco-lista li:last-child {
+    border-bottom: none;
+}
+
+.preco-lista i {
+    color: var(--primary);
     font-size: 0.9rem;
 }
 
-footer p {
-    margin: 5px 0;
+.btn-promover {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 12px;
+    transition: background var(--transition);
 }
 
-/* Responsivo */
-@media (max-width: 700px) {
-    header .container {
+.btn-promover:hover {
+    background: var(--primary-dark);
+}
+
+.preco-nota {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ===== COMO FUNCIONA ===== */
+.como-funciona {
+    padding: 60px 0;
+}
+
+.passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.passo {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    text-align: center;
+}
+
+.passo-num {
+    width: 42px;
+    height: 42px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.passo h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.passo p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ===== ENVIAR ===== */
+.enviar {
+    padding: 40px 0 70px;
+}
+
+.enviar-box {
+    background: linear-gradient(135deg, #0f1a12 0%, var(--bg-card) 100%);
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    border-radius: 20px;
+    padding: 40px 28px;
+    text-align: center;
+}
+
+.enviar-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.enviar-box p {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 24px;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.btn-whatsapp:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #080b0f;
+    border-top: 1px solid var(--border);
+    padding: 40px 0 24px;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.footer-logo h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.footer-logo span {
+    color: var(--primary);
+}
+
+.footer-logo p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    z-index: 999;
+    transition: transform var(--transition), background var(--transition);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.08);
+    background: var(--primary-dark);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero {
+        padding: 50px 0 40px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
+        text-align: center;
     }
-    
-    nav a {
-        margin: 0 10px;
+
+    .footer-links {
+        justify-content: center;
     }
-    
-    .hero h2 {
-        font-size: 1.6rem;
-    }
-    
-    .search-box {
+}
+
+@media (max-width: 480px) {
+    .botoes {
         flex-direction: column;
     }
+
+    .btn {
+        width: 100%;
+    }
+
+    .preco-valor .numero {
+        font-size: 2.8rem;
+    }
+}2. script.jsJavaScript/* ===== Cocktail Musica - Script Principal ===== */
+
+let filtroAtual = "todos";
+let termoBusca = "";
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+    renderizarMusicas();
+    setupMenu();
+    setupSearch();
+});
+
+/* ---------- Menu Mobile ---------- */
+function setupMenu() {
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("navMobile");
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        const icon = toggle.querySelector("i");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-times");
+    });
+}
+
+function fecharMenu() {
+    const nav = document.getElementById("navMobile");
+    const toggle = document.getElementById("menuToggle");
+    if (nav) nav.classList.remove("open");
+    if (toggle) {
+        const icon = toggle.querySelector("i");
+        icon.classList.add("fa-bars");
+        icon.classList.remove("fa-times");
+    }
+}
+
+/* ---------- Pesquisa ---------- */
+function setupSearch() {
+    const input = document.getElementById("searchInput");
+    if (!input) return;
+
+    input.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") filtrarMusicas();
+        filtrarMusicas();
+    });
+}
+
+function filtrarMusicas() {
+    const input = document.getElementById("searchInput");
+    termoBusca = input ? input.value.trim().toLowerCase() : "";
+    renderizarMusicas();
+}
+
+/* ---------- Filtros ---------- */
+function aplicarFiltro(tipo) {
+    filtroAtual = tipo;
+
+    document.querySelectorAll(".filtro-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.filtro === tipo);
+    });
+
+    renderizarMusicas();
+}
+
+/* ---------- Renderização ---------- */
+function getMusicasFiltradas() {
+    let lista = [...musicas];
+
+    // Filtro de busca
+    if (termoBusca) {
+        lista = lista.filter(m =>
+            m.titulo.toLowerCase().includes(termoBusca) ||
+            m.artista.toLowerCase().includes(termoBusca)
+        );
+    }
+
+    // Filtro de secção
+    if (filtroAtual === "destaque") {
+        lista = lista.filter(m => m.destaque);
+    } else if (filtroAtual === "recentes") {
+        lista.sort((a, b) => new Date(b.data) - new Date(a.data));
+    } else {
+        // "todos": destaques primeiro, depois por data
+        lista.sort((a, b) => {
+            if (a.destaque && !b.destaque) return -1;
+            if (!a.destaque && b.destaque) return 1;
+            return new Date(b.data) - new Date(a.data);
+        });
+    }
+
+    return lista;
+}
+
+function criarCard(musica) {
+    const temVideo = musica.video && musica.video.trim() !== "";
+    const destaqueClass = musica.destaque ? "destaque" : "";
+    const badge = musica.destaque
+        ? `<span class="badge-destaque">Destaque</span>`
+        : "";
+
+    const btnPromover = !musica.destaque
+        ? `<a href="https://wa.me/258841460389?text=${encodeURIComponent(
+              `Olá! Quero promover a música "${musica.titulo}" de ${musica.artista} por 500 MT.`
+          )}" target="_blank" class="btn btn-promover-card">
+               <i class="fas fa-rocket"></i> Promover por 500 MT
+           </a>`
+        : "";
+
+    return `
+        <div class="card ${destaqueClass}" 
+             data-titulo="${musica.titulo.toLowerCase()}" 
+             data-artista="${musica.artista.toLowerCase()}">
+            ${badge}
+            <div class="card-img">🎵</div>
+            <h3>${escapeHtml(musica.titulo)}</h3>
+            <p class="artista">${escapeHtml(musica.artista)}</p>
+            
+            <div class="stats">
+                <span><i class="fas fa-play"></i> ${formatNumber(musica.plays)}</span>
+                <span><i class="fas fa-download"></i> ${formatNumber(musica.downloads)}</span>
+            </div>
+
+            <audio controls preload="none">
+                <source src="${musica.audio}" type="audio/mpeg">
+                O teu navegador não suporta áudio.
+            </audio>
+
+            <div class="botoes">
+                <a href="${musica.audio}" download class="btn">
+                    <i class="fas fa-download"></i> MP3
+                </a>
+                ${temVideo ? `
+                    <a href="${musica.video}" download class="btn btn-mp4">
+                        <i class="fas fa-video"></i> MP4
+                    </a>
+                ` : ""}
+            </div>
+            ${btnPromover}
+        </div>
+    `;
+}
+
+function renderizarMusicas() {
+    const listaCompleta = getMusicasFiltradas();
+    const container = document.getElementById("listaMusicas");
+    const containerDestaques = document.getElementById("listaDestaques");
+    const semResultados = document.getElementById("semResultados");
+    const resultadoPesquisa = document.getElementById("resultadoPesquisa");
+
+    // Secção Destaques
+    if (containerDestaques) {
+        const soDestaques = musicas
+            .filter(m => m.destaque)
+            .sort((a, b) => new Date(b.data) - new Date(a.data));
+
+        if (soDestaques.length === 0) {
+            containerDestaques.innerHTML = `<p class="nota" style="grid-column:1/-1">Ainda não há músicas em destaque. Sê o primeiro a promover!</p>`;
+        } else {
+            containerDestaques.innerHTML = soDestaques.map(criarCard).join("");
+        }
+    }
+
+    // Catálogo principal
+    if (container) {
+        if (listaCompleta.length === 0) {
+            container.innerHTML = "";
+            if (semResultados) semResultados.style.display = "block";
+        } else {
+            container.innerHTML = listaCompleta.map(criarCard).join("");
+            if (semResultados) semResultados.style.display = "none";
+        }
+    }
+
+    // Texto de resultado de pesquisa
+    if (resultadoPesquisa) {
+        if (termoBusca) {
+            resultadoPesquisa.textContent = listaCompleta.length > 0
+                ? `${listaCompleta.length} resultado(s) para "${termoBusca}"`
+                : `Nenhum resultado para "${termoBusca}"`;
+        } else {
+            resultadoPesquisa.textContent = "";
+        }
+    }
+}
+
+/* ---------- Utilitários ---------- */
+function formatNumber(n) {
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    return n.toString();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
 }
